@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bitcoin Payment</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,8 +12,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
     }
     .payment-card {
       background: #ffffff;
@@ -35,14 +37,14 @@
       font-weight: bold;
       margin-bottom: 16px;
     }
-    .qr-code {
-      width: 200px;
-      height: 200px;
+    #qrcode {
+      display: flex;
+      justify-content: center;
       margin: 16px 0;
-      border: 2px solid #ddd;
-      padding: 8px;
-      border-radius: 8px;
-      background: #fff;
+    }
+    #qrcode img {
+      max-width: 200px;
+      height: auto;
     }
     .address-box {
       background: #f0f0f0;
@@ -78,8 +80,8 @@
     <h2>Crypto Payment</h2>
     <p>Network: <strong>Bitcoin</strong></p>
     
-    <!-- QR Code generated dynamically -->
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx" alt="Bitcoin QR Code" class="qr-code">
+    <!-- QR Code will be generated here -->
+    <div id="qrcode"></div>
 
     <p>Wallet Address:</p>
     <div class="address-box">
@@ -88,6 +90,18 @@
 
     <a href="bitcoin:1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx" class="pay-btn">Open in Wallet</a>
   </div>
+
+  <script>
+    // Generate QR code
+    new QRCode(document.getElementById("qrcode"), {
+      text: "bitcoin:1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx",
+      width: 200,
+      height: 200,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  </script>
 
 </body>
 </html>

@@ -39,6 +39,10 @@
       width: 200px;
       height: 200px;
       margin: 16px 0;
+      border: 2px solid #ddd;
+      padding: 8px;
+      border-radius: 8px;
+      background: #fff;
     }
     .address-box {
       background: #f0f0f0;
@@ -57,6 +61,11 @@
       text-decoration: none;
       border-radius: 6px;
       font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+    .pay-btn:hover {
+      background-color: #e68a1a;
     }
   </style>
 </head>
@@ -69,8 +78,8 @@
     <h2>Crypto Payment</h2>
     <p>Network: <strong>Bitcoin</strong></p>
     
-    <!-- Replace src with your hosted QR code image URL -->
-    <img src="YOUR_QR_CODE_IMAGE_URL" alt="Bitcoin QR Code" class="qr-code">
+    <!-- QR Code generated dynamically -->
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx" alt="Bitcoin QR Code" class="qr-code">
 
     <p>Wallet Address:</p>
     <div class="address-box">

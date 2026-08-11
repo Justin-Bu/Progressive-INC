@@ -5,253 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bitcoin Payment</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      padding: 20px;
+      height: 100vh;
+      margin: 0;
     }
-    
     .payment-card {
       background: #ffffff;
-      padding: 40px 30px;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
-      max-width: 400px;
+      max-width: 360px;
       width: 100%;
-      animation: slideIn 0.4s ease-out;
     }
-    
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .qr-code {
+      width: 200px;
+      height: 200px;
+      margin: 16px 0;
     }
-    
-    h2 {
-      color: #333;
-      font-size: 28px;
-      margin-bottom: 8px;
-      font-weight: 600;
+    .address-box {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 14px;
+      word-break: break-all;
+      margin-bottom: 16px;
     }
-    
-    .network-badge {
+    .pay-btn {
       display: inline-block;
       background-color: #f7931a;
       color: white;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-    
-    .qr-code {
-      width: 220px;
-      height: 220px;
-      margin: 24px auto;
-      padding: 10px;
-      background: #f9f9f9;
-      border-radius: 12px;
-      border: 2px solid #f0f0f0;
-    }
-    
-    .amount-section {
-      margin: 20px 0;
-      padding: 16px;
-      background: #f9f9f9;
-      border-radius: 8px;
-    }
-    
-    .amount-label {
-      font-size: 12px;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-    
-    .amount-value {
-      font-size: 24px;
-      color: #333;
-      font-weight: 600;
-      font-family: 'Courier New', monospace;
-    }
-    
-    .address-label {
-      font-size: 12px;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: 20px;
-      margin-bottom: 8px;
-    }
-    
-    .address-box {
-      background: #f0f0f0;
-      padding: 12px;
-      border-radius: 8px;
-      font-family: 'Courier New', monospace;
-      font-size: 12px;
-      word-break: break-all;
-      color: #333;
-      margin-bottom: 20px;
-      border: 1px solid #e0e0e0;
-      user-select: all;
-    }
-    
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    
-    .pay-btn {
-      flex: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #f7931a;
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 14px;
-    }
-    
-    .pay-btn:hover {
-      background-color: #e68617;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(247, 147, 26, 0.3);
-    }
-    
-    .copy-btn {
-      flex: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #667eea;
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 14px;
-    }
-    
-    .copy-btn:hover {
-      background-color: #5568d3;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-    }
-    
-    .footer-text {
-      font-size: 12px;
-      color: #aaa;
-      margin-top: 16px;
-      line-height: 1.5;
-    }
-    
-    .copy-notification {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #333;
-      color: white;
       padding: 12px 20px;
+      text-decoration: none;
       border-radius: 6px;
-      font-size: 14px;
-      z-index: 1000;
-    }
-    
-    .copy-notification.show {
-      display: block;
-      animation: fadeInOut 2s ease-in-out;
-    }
-    
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; }
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
   <div class="payment-card">
-    <h2>💰 Crypto Payment</h2>
-    <div class="network-badge">Bitcoin Network</div>
+    <h2>Crypto Payment</h2>
+    <p>Network: <strong>Bitcoin</strong></p>
     
-    <!-- QR Code - Replace with your generated QR code -->
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=bitcoin:1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx" alt="Bitcoin QR Code" class="qr-code">
+    <!-- Replace src with your hosted QR code image URL -->
+    <img src="YOUR_QR_CODE_IMAGE_URL" alt="Bitcoin QR Code" class="qr-code">
 
-    <div class="amount-section">
-      <div class="amount-label">Amount</div>
-      <div class="amount-value">0.00 BTC</div>
-    </div>
-
-    <div class="address-label">Wallet Address</div>
-    <div class="address-box" id="addressBox">
+    <p>Wallet Address:</p>
+    <div class="address-box">
       1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx
     </div>
 
-    <div class="button-group">
-      <a href="bitcoin:1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx" class="pay-btn">📱 Open Wallet</a>
-      <button class="copy-btn" onclick="copyAddress()">📋 Copy Address</button>
-    </div>
-
-    <div class="footer-text">
-      This payment address is valid for this transaction. <br>
-      Keep your wallet secure and verify the address before sending.
-    </div>
+    <a href="bitcoin:1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx" class="pay-btn">Open in Wallet</a>
   </div>
-
-  <div class="copy-notification" id="notification">
-    ✓ Address copied to clipboard!
-  </div>
-
-  <script>
-    function copyAddress() {
-      const addressBox = document.getElementById('addressBox');
-      const address = addressBox.textContent.trim();
-      
-      navigator.clipboard.writeText(address).then(() => {
-        const notification = document.getElementById('notification');
-        notification.classList.add('show');
-        
-        setTimeout(() => {
-          notification.classList.remove('show');
-        }, 2000);
-      }).catch(() => {
-        alert('Failed to copy address');
-      });
-    }
-  </script>
 
 </body>
 </html>

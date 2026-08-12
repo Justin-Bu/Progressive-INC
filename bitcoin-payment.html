@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bitcoin Payment</title>
+  <title>USDT Payment</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     body {
@@ -22,7 +22,7 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
-      max-width: 360px;
+      max-width: 420px;
       width: 100%;
     }
     .card-title {
@@ -42,6 +42,12 @@
       font-weight: bold;
       margin-bottom: 16px;
     }
+    .crypto-payment-section {
+      background: #f9f9f9;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
     #qrcode {
       display: flex;
       justify-content: center;
@@ -56,13 +62,29 @@
       padding: 10px;
       border-radius: 6px;
       font-family: monospace;
-      font-size: 14px;
+      font-size: 12px;
       word-break: break-all;
       margin-bottom: 16px;
     }
+    .copy-btn {
+      display: inline-block;
+      background-color: #3498db;
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    .copy-btn:hover {
+      background-color: #2980b9;
+    }
     .pay-btn {
       display: inline-block;
-      background-color: #f7931a;
+      background-color: #26a65b;
       color: white;
       padding: 12px 20px;
       text-decoration: none;
@@ -70,9 +92,31 @@
       font-weight: bold;
       cursor: pointer;
       border: none;
+      margin-top: 12px;
     }
     .pay-btn:hover {
-      background-color: #e68a1a;
+      background-color: #229954;
+    }
+    .instructions {
+      text-align: left;
+      background: #ecf0f1;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 16px;
+      border-left: 4px solid #3498db;
+    }
+    .instructions h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    .instructions ol {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+    .instructions li {
+      margin: 6px 0;
+      color: #34495e;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -83,30 +127,57 @@
     <p class="customer-name"><strong>Name:</strong> Syed Abbas</p>
     <p class="amount-due">Amount Due: $6,805</p>
     
-    <h2>Crypto Payment</h2>
-    <p>Network: <strong>Bitcoin</strong></p>
-    
-    <!-- QR Code will be generated here -->
-    <div id="qrcode"></div>
+    <div class="crypto-payment-section">
+      <h2>Crypto Payment</h2>
+      <p>Network: <strong>TRON (TRX)</strong></p>
+      <p>Token: <strong>USDT (Tether)</strong></p>
+      
+      <!-- QR Code will be generated here -->
+      <div id="qrcode"></div>
 
-    <p>Wallet Address:</p>
-    <div class="address-box">
-      1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx
+      <p><strong>Wallet Address:</strong></p>
+      <div class="address-box">
+        TLJMoiaYJbR7oKQFHTvirmTNTzPaG6saXU
+      </div>
+      <button class="copy-btn" onclick="copyAddress()">Copy Address</button>
     </div>
 
-    <a href="bitcoin:1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx" class="pay-btn">Open in Wallet</a>
+    <div class="instructions">
+      <h3>📝 How to Make Payment:</h3>
+      <ol>
+        <li><strong>Open your crypto wallet</strong> (Trust Wallet, MetaMask, Kraken, Binance, etc.)</li>
+        <li><strong>Select USDT token</strong> on the TRON network</li>
+        <li><strong>Choose "Send" or "Transfer"</strong></li>
+        <li><strong>Scan the QR code</strong> or paste the wallet address: <br>TLJMoiaYJbR7oKQFHTvirmTNTzPaG6saXU</li>
+        <li><strong>Enter amount:</strong> Equivalent to $6,805 in USDT</li>
+        <li><strong>Review the transaction</strong> and confirm</li>
+        <li><strong>Wait for confirmation</strong> on the blockchain (usually 1-2 minutes)</li>
+        <li><strong>You will receive a confirmation</strong> once payment is processed</li>
+      </ol>
+    </div>
+
   </div>
 
   <script>
-    // Generate QR code
+    // Generate QR code for USDT address
     new QRCode(document.getElementById("qrcode"), {
-      text: "bitcoin:1CsacnLnmn7efFfsEFJBC9hyz2bbDoBeFx",
+      text: "TLJMoiaYJbR7oKQFHTvirmTNTzPaG6saXU",
       width: 200,
       height: 200,
       colorDark: "#000000",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H
     });
+
+    // Copy address to clipboard
+    function copyAddress() {
+      const address = "TLJMoiaYJbR7oKQFHTvirmTNTzPaG6saXU";
+      navigator.clipboard.writeText(address).then(() => {
+        alert("Address copied to clipboard!");
+      }).catch(err => {
+        console.error("Failed to copy:", err);
+      });
+    }
   </script>
 
 </body>

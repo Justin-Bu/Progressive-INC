@@ -163,18 +163,20 @@
       color: #1a1a1a;
     }
 
-    .qrcode-placeholder {
+    .qrcode-container {
       display: flex;
       justify-content: center;
-      align-items: center;
       margin: 24px 0;
       padding: 16px;
       background: #f8f9fa;
       border-radius: 8px;
-      min-height: 200px;
-      border: 2px dashed #ccc;
-      font-size: 12px;
-      color: #999;
+      min-height: 220px;
+    }
+
+    .qrcode-container img {
+      max-width: 200px;
+      height: auto;
+      image-rendering: pixelated;
     }
 
     .address-section {
@@ -343,10 +345,9 @@
         </div>
       </div>
 
-      <!-- QR Code Placeholder -->
-      <div class="qrcode-placeholder">
-        📱 Scan with your wallet app<br>
-        or copy address below
+      <!-- QR Code -->
+      <div class="qrcode-container">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TLJMoiaYJbR7oKQFHTvirmTNTzPaG6saXU" alt="USDT Wallet QR Code" loading="lazy">
       </div>
 
       <!-- Address -->
@@ -371,7 +372,7 @@
           <li><strong>Open your cryptocurrency wallet</strong> (Trust Wallet, MetaMask, Kraken, Binance, etc.)</li>
           <li><strong>Navigate to USDT token</strong> on the TRON (TRX) blockchain network</li>
           <li><strong>Select "Send" or "Transfer"</strong> option</li>
-          <li><strong>Copy the wallet address provided below</strong> or manually enter it</li>
+          <li><strong>Scan the QR code above</strong> or copy the wallet address provided below</li>
           <li><strong>Enter the payment amount:</strong> Equivalent to $6,805 USD in USDT</li>
           <li><strong>Review transaction details</strong> carefully before confirming</li>
           <li><strong>Approve and sign the transaction</strong> using your wallet</li>

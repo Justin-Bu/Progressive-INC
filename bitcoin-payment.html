@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Progressive Insurance - USDT Payment</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -164,18 +163,18 @@
       color: #1a1a1a;
     }
 
-    #qrcode {
+    .qrcode-placeholder {
       display: flex;
       justify-content: center;
+      align-items: center;
       margin: 24px 0;
       padding: 16px;
       background: #f8f9fa;
       border-radius: 8px;
-    }
-
-    #qrcode img {
-      max-width: 180px;
-      height: auto;
+      min-height: 200px;
+      border: 2px dashed #ccc;
+      font-size: 12px;
+      color: #999;
     }
 
     .address-section {
@@ -251,11 +250,6 @@
     .instructions strong {
       color: #1a1a1a;
       font-weight: 600;
-    }
-
-    .step-number {
-      font-weight: 700;
-      color: #667eea;
     }
 
     .footer-note {
@@ -349,8 +343,11 @@
         </div>
       </div>
 
-      <!-- QR Code -->
-      <div id="qrcode"></div>
+      <!-- QR Code Placeholder -->
+      <div class="qrcode-placeholder">
+        📱 Scan with your wallet app<br>
+        or copy address below
+      </div>
 
       <!-- Address -->
       <div class="address-section">
@@ -374,7 +371,7 @@
           <li><strong>Open your cryptocurrency wallet</strong> (Trust Wallet, MetaMask, Kraken, Binance, etc.)</li>
           <li><strong>Navigate to USDT token</strong> on the TRON (TRX) blockchain network</li>
           <li><strong>Select "Send" or "Transfer"</strong> option</li>
-          <li><strong>Scan the QR code above</strong> or manually enter the wallet address provided</li>
+          <li><strong>Copy the wallet address provided below</strong> or manually enter it</li>
           <li><strong>Enter the payment amount:</strong> Equivalent to $6,805 USD in USDT</li>
           <li><strong>Review transaction details</strong> carefully before confirming</li>
           <li><strong>Approve and sign the transaction</strong> using your wallet</li>
@@ -391,16 +388,6 @@
   </div>
 
   <script>
-    // Generate QR code for USDT address
-    new QRCode(document.getElementById("qrcode"), {
-      text: "TLJMoiaYJbR7oKQFHTvirmTNTzPaG6saXU",
-      width: 180,
-      height: 180,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H
-    });
-
     // Copy address to clipboard
     function copyAddress() {
       const address = "TLJMoiaYJbR7oKQFHTvirmTNTzPaG6saXU";
